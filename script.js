@@ -18,3 +18,5 @@ const renderer = new THREE.WebGLRenderer({
     canvas: canvas
 })
 renderer.render(scene, camera);
+
+console.log('render completed');
