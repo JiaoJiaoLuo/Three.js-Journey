@@ -28,14 +28,52 @@ setInterval(() => {
     camera.position.x += vx;
     camera.position.y += vy;
 
-    if(camera.position.x < -1 || camera.position.x > 1){
+    if (camera.position.x < -1 || camera.position.x > 1) {
         vx = -vx;
     }
 
-    
-    if(camera.position.y < -1 || camera.position.y > 1){
+
+    if (camera.position.y < -1 || camera.position.y > 1) {
         vy = -vy;
     }
 
     renderer.render(scene, camera);
 }, 50);
+
+class Person {
+    
+
+    constructor(name, weight) {
+        // 创建一个空对象
+        /**
+         * let o = {};
+         * let this = o;
+         */
+
+        this.name = name;
+        this.weight = weight;
+
+        this.age = 10;
+
+        // 返回这个对象
+        /**
+         * return this;
+         */
+    }
+
+    sayHello() {
+        console.log(
+            '我叫' + this.name + ', 我现在' + this.weight + '斤' + '，我今年' + this.age + '岁'
+        );
+    }
+
+    
+
+}
+
+let yuejiao = new Person('马月娇', 100);
+yuejiao.sayHello();
+yuejiao.age = 22;
+yuejiao.sayHello();
+
+new Person('马月娇bb', 120).sayHello()
