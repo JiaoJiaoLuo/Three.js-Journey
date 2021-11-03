@@ -1,6 +1,5 @@
 import './style.css'
 import * as THREE from 'three'
-import { Geometry, Material } from 'three'
 
 // Canvas
 const canvas = document.querySelector('canvas.webgl')
@@ -8,43 +7,40 @@ const canvas = document.querySelector('canvas.webgl')
 // Scene
 const scene = new THREE.Scene()
 
-/* Camera*/
-const camera = new THREE.PerspectiveCamera(75, 800 / 600)
-
-camera.position.z=3;
-
-scene.add(camera)
-
-
-/* Objects*/
- const geometry=new THREE.BoxGeometry(1, 1, 1),
- const matetial=new THREE.MeshBasicMaterial({ color: 0xff0000 })
-const mesh=new THREE.Mesh(geometry,matetial)
-mesh.position.x=0.5
-mesh.position.y=-0.5
-mesh.position.z=0.7
+/**
+ * Objects
+ */
+const geometry = new THREE.BoxGeometry(1, 1, 1)
+const material = new THREE.MeshBasicMaterial({ color: 0xff0000 })
+const mesh = new THREE.Mesh(geometry, material)
 scene.add(mesh)
 
-//scale//
-mesh.scale.x=0.3
-mesh.scale.y=0.5
-mesh.scale.z= 0.4
-console.log(mesh.position.distanceTo(camera.position))
-//rotation
-mesh.rotation.reorder('XYZ')
-mesh.rotation.x=Math.PI*0.25;
-mesh.rotation.y=Math.PI*0.25;
+/**
+ * Sizes
+ */
+const sizes = {
+    width: 800,
+    height: 600
+}
 
+/**
+ * Camera
+ */
+const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height)
+camera.position.z = 3
+scene.add(camera)
 
-
-
-
-
-/*Renderer*/
+/**
+ * Renderer
+ */
 const renderer = new THREE.WebGLRenderer({
     canvas: canvas
 })
-renderer.setSize(800, 600)
+renderer.setSize(sizes.width, sizes.height)
 renderer.render(scene, camera)
-
-
+//animation
+const tick = () => {
+    mesh.rotation.y += 0.01
+    renderer.render(scene, camera)
+    window.requestAnimationFrame(tick)
+}
