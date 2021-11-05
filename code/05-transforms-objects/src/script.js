@@ -44,21 +44,19 @@ renderer.render(scene, camera)
 // TODO:
 // 三种保证无论帧率是多少，都运动速度一样的方法
 // 1. 使用Date对象获取时间，得到这一帧和上一帧的时间差
-let time=Date.now()
 
 
+
+
+// 2. 使用Three.js中自带的Clock对象，计算已经流逝的时间
+const clock=new THREE.Clock()
 const tick=()=>{
-const currenttime=Date.now()
-const deltatime=currenttime-time
-console.log(deltatime)
-time=currenttime
-mesh.rotation.y+=0.001*deltatime
+const elapsedtime=clock.getElapsedTime()
+console.log(elapsedtime)
+mesh.rotation.y=elapsedtime
 renderer.render(scene,camera)
 window.requestAnimationFrame(tick)
 }
 tick()
-
-// 2. 使用Three.js中自带的Clock对象，计算已经流逝的时间
-
 // 3. GSAP包
 
