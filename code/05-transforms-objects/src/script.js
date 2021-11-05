@@ -53,7 +53,7 @@ const clock=new THREE.Clock()
 const tick=()=>{
 const elapsedtime=clock.getElapsedTime()
 console.log(elapsedtime)
-mesh.rotation.y=elapsedtime
+mesh.rotation.y=elapsedtime*Math.PI*2
 renderer.render(scene,camera)
 window.requestAnimationFrame(tick)
 }
