@@ -1,5 +1,7 @@
 import './style.css'
 import * as THREE from 'three'
+import  gsap from 'gsap'
+console.log(gsap)
 
 // Canvas
 const canvas = document.querySelector('canvas.webgl')
@@ -49,15 +51,20 @@ renderer.render(scene, camera)
 
 
 // 2. 使用Three.js中自带的Clock对象，计算已经流逝的时间
-const clock=new THREE.Clock()
+
+// 3. GSAP包
+// const clock=new THREE.Clock()
+gsap.to (mesh.position,{duration:1,delay:1,x:2})
+gsap.to (mesh.position,{duration:1,delay:2,x:0})
+gsap.to (mesh.position,{duration:1,delay:3,x:-1})
+gsap.to (mesh.position,{duration:1,delay:4,x:0})
+
 const tick=()=>{
-const elapsedtime=clock.getElapsedTime()
-console.log(elapsedtime)
-mesh.position.y=Math.cos(2*Math.PI*elapsedtime)
-mesh.position.x=Math.sin(2*Math.PI*elapsedtime)
+// const elapsedtime=clock.getElapsedTime()
+// console.log(elapsedtime)
+// mesh.position.y=Math.cos(2*Math.PI*elapsedtime)
+// mesh.position.x=Math.sin(2*Math.PI*elapsedtime)
 renderer.render(scene,camera)
 window.requestAnimationFrame(tick)
 }
 tick()
-// 3. GSAP包
-
